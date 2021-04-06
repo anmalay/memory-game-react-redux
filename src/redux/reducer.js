@@ -23,27 +23,37 @@ export const reducer = (state = initialState, action) => {
     let newCards = [...state.cards];
     newCards[action.id].open = true;
     let newFlipped = [...state.flipped];
-    let newSteps = state.steps;
-    if (newFlipped.length === 2) {
-      newSteps++;
-      if (newCards[newFlipped[0]].img !== newCards[newFlipped[1]].img) {
-        newCards[newFlipped[0]].open = false;
-        newCards[newFlipped[1]].open = false;
-      }
-      newFlipped = [];
-    }
     newFlipped.push(action.id);
     return {
       ...state,
       cards: newCards,
       flipped: newFlipped,
-      steps: newSteps,
     };
   } else if (action.type === "RESTART_GAME") {
     return {
       cards: shuffle(),
       flipped: [],
       steps: 0,
+    };
+  } else if ((action.type = "UPDATE")) {
+    let newCards = [...state.cards];
+    let newFlipped = [...state.flipped];
+    let newSteps = state.steps;
+    if (newFlipped.length === 2) {
+      newSteps++;
+      if (newCards[newFlipped[0]].img !== newCards[newFlipped[1]].img) {
+        newCards[newFlipped[0]].open = false;
+        newCards[newFlipped[1]].open = false;
+        newFlipped = [];
+      } else {
+        newFlipped = [];
+      }
+    }
+    return {
+      ...state,
+      cards: newCards,
+      flipped: newFlipped,
+      steps: newSteps,
     };
   }
   return state;

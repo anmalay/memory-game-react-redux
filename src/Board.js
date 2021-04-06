@@ -5,6 +5,7 @@ import { defaultImg } from "./Cards";
 export const Board = () => {
   const cards = useSelector((state) => state.cards);
   const steps = useSelector((state) => state.steps);
+  const flipped = useSelector((state) => state.flipped);
 
   const result = cards.every((item) => item.open);
 
@@ -24,6 +25,16 @@ export const Board = () => {
       type: "RESTART_GAME",
     });
   };
+
+  useEffect(() => {
+    if (flipped.length === 2) {
+      setTimeout(() => {
+        dispatch({
+          type: "UPDATE",
+        });
+      }, 1000);
+    }
+  }, [flipped]);
 
   return (
     <div className="board">

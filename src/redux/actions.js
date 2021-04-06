@@ -10,3 +10,9 @@ export const restartGame = () => {
     type: "RESTART_GAME",
   };
 };
+
+export const updateGame = () => {
+  return {
+    type: "UPDATE",
+  };
+};
