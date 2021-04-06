@@ -35,7 +35,7 @@ export const reducer = (state = initialState, action) => {
       flipped: [],
       steps: 0,
     };
-  } else if ((action.type = "UPDATE")) {
+  } else if (action.type === "UPDATE") {
     let newCards = [...state.cards];
     let newFlipped = [...state.flipped];
     let newSteps = state.steps;
