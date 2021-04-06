@@ -12,7 +12,7 @@ export const Board = () => {
   const dispatch = useDispatch();
 
   const handleClick = (id, isOpen) => {
-    if (!isOpen) {
+    if (!isOpen && flipped.length < 2) {
       dispatch({
         type: "TOGGLE_CARD",
         id: id,
@@ -32,7 +32,7 @@ export const Board = () => {
         dispatch({
           type: "UPDATE",
         });
-      }, 1000);
+      }, 500);
     }
   }, [flipped]);
 
